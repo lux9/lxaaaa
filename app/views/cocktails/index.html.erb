@@ -4,7 +4,12 @@
   <% @cocktails.each do |cocktail| %>
     <div class="col-sm-3">
       <div class="card" style="width: 18rem;">
-        <%= image_tag "cuba.jpg", alt: "cuba", width: "100%" %>
+        <% if cocktail.photo.attached? %>
+
+<%= cl_image_tag cocktail.photo.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
+
+
         <div class="card-body">
           <h5 class="card-title"><%= cocktail.name %></h5>
           <%= link_to "View", cocktail_path(cocktail), class: "btn btn-primary" %>
